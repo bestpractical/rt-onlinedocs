@@ -1,0 +1,10 @@
+RT::OnlineDocs adds a "Developer Documentation" menu to the RT user interface.
+This tool provides a browsable user interface to the RT API documentation for
+the running RT instance. I'm indebted to Autrijus Tang who contributed the
+first version of this code.
+
+Be sure to stop and start your webserver to fully enable this RT extension
+
+    Jesse Vincent
+    <jesse@bestpractical.com>
+    Best Practical Solutions, LLC

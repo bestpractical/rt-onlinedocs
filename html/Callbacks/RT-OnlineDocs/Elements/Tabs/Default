@@ -17,8 +17,15 @@
 %# END LICENSE BLOCK
 
 <%init>
-$toptabs->{'ZZ-RTFM'} = { title =>loc("API Documentation"),
+
+if ($session{'CurrentUser'}->UserObj->HasRight(
+    Right => 'SuperUser',
+    Object => $RT::System,
+)) {
+
+    $toptabs->{'ZZ-RTFM'} = { title =>loc("API Docs"),
                           path  => "Developer/Perldoc/index.html" };
+}
 </%init>
 <%args>
 $toptabs =>undef
