@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+<head>
+<title><% $n || 'RT' %> - RT Pod Online</title>
+<style type="text/css"><!--
+a { text-decoration: none }
+a:hover { text-decoration: underline }
+a:focus { background: #99ff99; border: 1px black dotted }
+--></style>
+</head>
+<body>
+<%PERL>
+my $dirname = File::Basename::dirname($INC{'RT.pm'});
+$n =~ s/::/\//g;
+$n = 'RT' unless -r "$dirname/$n.pm";
+my $show = "$dirname/$n";
+if (-r "$show.pm") {
+    local $/;
+    my $got_name = 0;
+
+    my $total_body = '';
+
+    foreach my $postfix ('', '_Overlay', '_Vendor', '_Local') {
+    	my $fh;
+        next unless -r "$show$postfix.pm";
+        open $fh, "$show$postfix.pm" or next;
+        my $body = <$fh>;
+        if ($body =~ s/.*Create takes a hash of values and creates a row in the
+database:([^=]+)//s) {
+            # okay, reduce it...
+            $body = "=head1 SCHEMA\n\n$1\n=head1 ACCESSORS\n\n\n=cut\n$body";
+            $body =~ s/=item/=head2/g;
+        }
+        elsif ($body =~ /^=item NewItem$/m and $n =~ /s$/) {
+            my $pkg = $n;
+            $pkg =~ s{/}{::}g;
+            chop $pkg;
+            $body = "=head1 NAME\n\n${pkg}s - Collection of $pkg
+objects\n\n=cut\n";
+            $got_name++;
+        }
+        else {
+            $body =~ s/^=head1 NAME[^=]+//m if $got_name;
+        }
+
+        $body =~ s/^=head1\b(?! ACCESSORS).*\s*(?==(head1|cut))//mg;
+        $body =~ s/^=head1 (?:AUTHOR|SEE ALSO|SYNOPSIS)\s*[^=]+//mg;
+        $body =~ s/^=/\n=/mg;
+        $body =~ s/^=begin testing\n/=begin testing\n\n/mg;
+        close $fh;
+
+	$total_body .= $body;
+    }
+	my $body;
+    my $converter = Pod::Simple::HTML->new();
+    $converter->output_string(\$body);
+    $converter->parse_string_document($total_body);
+    $body =~ s{.*?<body [^>]+>}{}s;
+    $body =~ s{</body>\s*</html>\s*$}{};
+    $n =~ s{/}{::}g;
+    $m->print("<h1>$n</h1>");
+    $body =~ s/(?<!\$)\b(RT::[a-zA-Z0-9:]+)\b/<a href="Body.html?n=$1">$1<\/a>/g;
+    $body =~ s{(?<![\$:])(?<!RT::)\b((?!RT::)\w+::\w+)\b}{<a
+href="http://search.cpan.org/search?query=$1&mode=module">$1</a>}g;
+    $body =~ s!</li>\n\t<ul>!<ul>!;
+    $body =~ s!</ul>!</ul></li>!;
+    $body =~ s!<p></p>!!;
+    $body =~ s!<a name=!<a id=!g;
+    $body =~ s!__index__!index!g;
+    $m->print($body);
+}
+</%PERL>
+</body></html>
+<%ARGS>
+$Target    => '&method=Body'
+$n  => ''
+</%ARGS>
+<%INIT>
+require File::Basename;
+require File::Find;
+require File::Temp;
+require File::Spec;
+require Pod::Simple::HTML;
+</%INIT>
