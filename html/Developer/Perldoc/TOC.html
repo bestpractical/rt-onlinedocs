@@ -12,7 +12,10 @@ a:focus { background: #99ff99; border: 1px black dotted }
 </head>
 <body style="background: #dddddd">
 <%PERL>
+
+
 my $dirname = File::Basename::dirname($INC{'RT.pm'});
+my $localdir = $dirname."/../local/lib";
 my @found;
 File::Find::find(
     { untaint => 1,
@@ -25,7 +28,7 @@ File::Find::find(
         $name =~ s!\W!::!g;
         push @found, $name;
     },follow => ($^O ne 'MSWin32') },
-    $dirname,
+    $dirname,$localdir
 );
 my ($prev, $indent);
 foreach my $file (sort @found) {

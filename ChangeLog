@@ -1,3 +1,7 @@
+0.03 - Tue Jul 24 11:08:24 PDT 2007
+
+    - Added support for the RT local lib directory. Thanks to Carlos Fuentes
+
 0.02 - Fri May 28 01:18:21 EDT 2004
     
     - Locked down to only work for SuperUsers

@@ -13,9 +13,18 @@ a:focus { background: #99ff99; border: 1px black dotted }
 <body>
 <%PERL>
 my $dirname = File::Basename::dirname($INC{'RT.pm'});
+my $localdirname = File::Basename::dirname($INC{'RT.pm'})."/../local/lib/";
 $n =~ s/::/\//g;
-$n = 'RT' unless -r "$dirname/$n.pm";
-my $show = "$dirname/$n";
+my $show;
+if ( -r "$dirname/$n.pm" ) {
+    $show = "$dirname/$n";
+} elsif ( -r "$localdirname/$n.pm" ) {
+    $show = "$localdirname/$n";
+} else {
+    $show = "$dirname/RT";
+}
+
+
 if (-r "$show.pm") {
     local $/;
     my $got_name = 0;
