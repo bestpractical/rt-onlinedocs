@@ -21,7 +21,7 @@ File::Find::find(
     { untaint => 1,
       wanted => sub {
         return unless /(\w+)\.pm$/;
-        return if $1 =~ /_/;
+        return if $1 =~ /_(?:_Local|Vendor|Overlay)/;
         my $name = $File::Find::name;
         $name =~ s/.*lib\b.//;
         $name =~ s!\.pm!!i;
