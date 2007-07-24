@@ -14,14 +14,14 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 51bb8e0e3df4a884c524bfbf9800776b761867c4 ChangeLog
+SHA1 cebf793cc9e66a2db6aa836fe8afcdd37bb3acf5 ChangeLog
 SHA1 2d3734d329f49402f7758e2e76480e23a8360693 MANIFEST
 SHA1 5d8286618606118b702380644da2c8a85da76a37 META.yml
 SHA1 a3bd2059f4778cf28628550fd0d2fe50df0ec3ad Makefile.PL
 SHA1 47f88e2a9297256a33d1999fa2c7d236c1338e41 README
 SHA1 3df05d5b2e9cbfce1d212662afe6cc843a7142f4 html/Callbacks/RT-OnlineDocs/Elements/Tabs/Default
 SHA1 982c1a2db41a956f0412bb58df644525b99a0ab0 html/Developer/Perldoc/Body.html
-SHA1 344560312bcf347af27b178c2d0ed3ff2c815833 html/Developer/Perldoc/TOC.html
+SHA1 9968a0a9f164b18e814760c6b327ea5648eb4f0d html/Developer/Perldoc/TOC.html
 SHA1 17abf23b6eaef0d92dc0086ee3d30dcffa8c51b0 html/Developer/Perldoc/autohandler
 SHA1 0d3c00edbc04a0f260f124a3b442708dd8d50ad3 html/Developer/Perldoc/index.html
 SHA1 78edb89a439463e44c33a72bbee84c54d0dc8aaf inc/Module/Install.pm
@@ -33,11 +33,11 @@ SHA1 5d6189b2cad15cf9932a28faafd55130c8247e83 inc/Module/Install/Metadata.pm
 SHA1 f7ca5510f60edc6a3ca479b8cbd23d89e9d15974 inc/Module/Install/RTx.pm
 SHA1 02af973fae2ac3531fa6b704574b2b8cb2a08148 inc/Module/Install/Win32.pm
 SHA1 3a2eab96e91cca8d99938cda7791759ae9d97b3a inc/Module/Install/WriteAll.pm
-SHA1 32f68a3e3c3e4427dc832c8b6b701d94fa02bbdd lib/RT/OnlineDocs.pm
+SHA1 7179bee34a732924a4feb58d4da4d36487546f0b lib/RT/OnlineDocs.pm
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.3 (Darwin)
 
-iD8DBQFGpkBYEi9d9xCOQEYRAmlAAJ4zjYQH9Qb53J395CcwXlq0ChlKyACdGgLx
-4Ql2vJVLLiHFxRsWDk7IEFI=
-=N/4G
+iD8DBQFGpkQyEi9d9xCOQEYRAl1WAJ9H3nu0ed4HD8eitKGKeJr56p/6sQCgvaFF
+Wa7yYSkSeRnjTi74ezcdpwk=
+=DLL1
 -----END PGP SIGNATURE-----
