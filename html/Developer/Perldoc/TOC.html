@@ -20,11 +20,11 @@ my @found;
 File::Find::find(
     { untaint => 1,
       wanted => sub {
-        return unless /(\w+)\.pm$/;
+        return unless /(\w+)\.(?:pm|pod)$/;
         return if $1 =~ /_(?:_Local|Vendor|Overlay)/;
         my $name = $File::Find::name;
         $name =~ s/.*lib\b.//;
-        $name =~ s!\.pm!!i;
+        $name =~ s!\.(?:pm|pod)!!i;
         $name =~ s!\W!::!g;
         push @found, $name;
     },follow => ($^O ne 'MSWin32') },

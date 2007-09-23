@@ -15,17 +15,28 @@ a:focus { background: #99ff99; border: 1px black dotted }
 my $dirname = File::Basename::dirname($INC{'RT.pm'});
 my $localdirname = File::Basename::dirname($INC{'RT.pm'})."/../local/lib/";
 $n =~ s/::/\//g;
+
 my $show;
-if ( -r "$dirname/$n.pm" ) {
-    $show = "$dirname/$n";
-} elsif ( -r "$localdirname/$n.pm" ) {
-    $show = "$localdirname/$n";
-} else {
-    $show = "$dirname/RT";
+my $suffix;
+
+foreach my $ending (qw(pm pod)) {
+    if ( -r "$dirname/$n.$ending" ) {
+        $show = "$dirname/$n";
+        $suffix = $ending;
+    } elsif ( -r "$localdirname/$n.$ending" ) {
+        $show = "$localdirname/$n";
+        $suffix = $ending;
+    }
+
+    last if $show;
 }
 
+unless ($show) {
+        $show = "$dirname/RT";
+        $suffix = 'pm';
+}
 
-if (-r "$show.pm") {
+if (-r "$show.$suffix") {
     local $/;
     my $got_name = 0;
 
@@ -33,8 +44,8 @@ if (-r "$show.pm") {
 
     foreach my $postfix ('', '_Overlay', '_Vendor', '_Local') {
     	my $fh;
-        next unless -r "$show$postfix.pm";
-        open $fh, "$show$postfix.pm" or next;
+        next unless -r "$show$postfix.$suffix";
+        open $fh, "$show$postfix.$suffix" or next;
         my $body = <$fh>;
         if ($body =~ s/.*Create takes a hash of values and creates a row in the
 database:([^=]+)//s) {
