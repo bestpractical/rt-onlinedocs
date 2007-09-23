@@ -1,3 +1,6 @@
+0.05
+
+    - support .pod files as well as .pm files
 0.04 Tue Jul 24 11:23:53 PDT 2007
 
     - only skip modules with an _ if they're _Vendor, _Overlay or _Local.
