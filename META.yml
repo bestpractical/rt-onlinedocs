@@ -19,4 +19,4 @@ requires:
   File::Spec: 0
   File::Temp: 0
   Pod::Simple::HTML: 0
-version: 0.05
+version: 0.06

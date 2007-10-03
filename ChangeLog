@@ -1,7 +1,13 @@
-0.05
+0.06 - 2007-10-03 15:14:39 +0400
+
+    - update list of dependencies
+    - enable auto_install
+
+0.05 - 2007-09-24 06:03:45 +0400
 
     - support .pod files as well as .pm files
-0.04 Tue Jul 24 11:23:53 PDT 2007
+
+0.04 - Tue Jul 24 11:23:53 PDT 2007
 
     - only skip modules with an _ if they're _Vendor, _Overlay or _Local.
         Again, Thanks to Carlos
