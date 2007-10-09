@@ -11,6 +11,7 @@ a:focus { background: #99ff99; border: 1px black dotted }
 --></style>
 </head>
 <body>
+<h3><a href="<% $RT::WebURL %>" target="_top">Return to RT</a></h3>
 <%PERL>
 my $dirname = File::Basename::dirname($INC{'RT.pm'});
 my $localdirname = File::Basename::dirname($INC{'RT.pm'})."/../local/lib/";
