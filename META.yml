@@ -19,4 +19,5 @@ requires:
   File::Spec: 0
   File::Temp: 0
   Pod::Simple::HTML: 0
+  perl: 5.8.3
 version: 0.08
