@@ -3,6 +3,10 @@ This tool provides a browsable user interface to the RT API documentation for
 the running RT instance. I'm indebted to Autrijus Tang who contributed the
 first version of this code.
 
+In RT 3.8.0 and newer you can enable and disable estension using @Plugins option:
+
+    Set( @Plugins, 'RT::OnlineDocs' );
+
 Be sure to stop and start your webserver to fully enable this RT extension
 
     Jesse Vincent
