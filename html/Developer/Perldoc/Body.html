@@ -14,7 +14,8 @@ a:focus { background: #99ff99; border: 1px black dotted }
 <h3><a href="<% $RT::WebURL %>" target="_top">Return to RT</a></h3>
 <%PERL>
 my $dirname = File::Basename::dirname($INC{'RT.pm'});
-my $localdirname = File::Basename::dirname($INC{'RT.pm'})."/../local/lib/";
+my $localdirname = $dirname."/../local/lib/";
+my $plugindir = $dirname."/../local/plugins";
 $n =~ s/::/\//g;
 
 my $show;
@@ -27,6 +28,18 @@ foreach my $ending (qw(pm pod)) {
     } elsif ( -r "$localdirname/$n.$ending" ) {
         $show = "$localdirname/$n";
         $suffix = $ending;
+    } else {
+	if(opendir(PLUGINS, $plugindir)) {
+	    while(defined(my $plugin = readdir(PLUGINS))) {
+		next if($plugin =~ /^\./);
+		if( -r $plugindir."/".$plugin."/lib/$n.$ending") {
+		    $show = $plugindir."/".$plugin."/lib/$n";
+		    $suffix = $ending;
+		    last;
+		}
+	    }
+	    closedir(PLUGINS);
+	}
     }
 
     last if $show;

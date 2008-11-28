@@ -16,19 +16,28 @@ a:focus { background: #99ff99; border: 1px black dotted }
 
 my $dirname = File::Basename::dirname($INC{'RT.pm'});
 my $localdir = $dirname."/../local/lib";
+my $plugindir = $dirname."/../local/plugins";
+my @plugins = ();
+if(opendir(PLUGINS, $plugindir)) {
+    while(defined(my $plugin = readdir(PLUGINS))) {
+	next if($plugin =~ /^\./);
+	push(@plugins, $plugindir."/".$plugin."/lib");
+    }
+    closedir(PLUGINS);
+}
 my @found;
 File::Find::find(
     { untaint => 1,
       wanted => sub {
         return unless /(\w+)\.(?:pm|pod)$/;
-        return if $1 =~ /_(?:_Local|Vendor|Overlay)/;
+        return if $1 =~ /(?:perllocal|_(?:Local|Vendor|Overlay))/;
         my $name = $File::Find::name;
         $name =~ s/.*lib\b.//;
         $name =~ s!\.(?:pm|pod)!!i;
         $name =~ s!\W!::!g;
         push @found, $name;
     },follow => ($^O ne 'MSWin32') },
-    $dirname,$localdir
+    $dirname,$localdir,@plugins
 );
 my ($prev, $indent);
 foreach my $file (sort @found) {
