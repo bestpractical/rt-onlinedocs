@@ -96,7 +96,7 @@ objects\n\n=cut\n";
     $n =~ s{/}{::}g;
     $m->print("<h1>$n</h1>");
     $body =~ s/(?<!\$)\b(RT::[a-zA-Z0-9:]+)\b/<a href="Body.html?n=$1">$1<\/a>/g;
-    $body =~ s{(?<![\$:])(?<!RT::)\b((?!(\w+_)?RT::)\w+::\w+)\b}{<a
+    $body =~ s{(?<![\$:])(?<!RT::)\b((?!RT::)\w+::\w+)\b}{<a
 href="http://search.cpan.org/search?query=$1&mode=module">$1</a>}g;
     $body =~ s!</li>\n\t<ul>!<ul>!;
     $body =~ s!</ul>!</ul></li>!;
