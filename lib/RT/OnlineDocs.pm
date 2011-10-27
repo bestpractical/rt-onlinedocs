@@ -11,6 +11,9 @@ first version of this code.
 
 =head1 INSTALLATION
 
+This extension is intended for RT4 only. If you wish to run this
+extension on RT 3.8 or earlier, please install version .10.
+
 =over
 
 =item perl Makefile.PL
