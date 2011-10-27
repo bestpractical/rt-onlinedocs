@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
-"http://www.w3.org/TR/html4/">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title><% $n || 'RT' %> - RT Pod Online</title>
@@ -7,18 +6,29 @@
 a { text-decoration: none }
 a:hover { text-decoration: underline }
 a:focus { background: #99ff99; border: 1px black dotted }
+
+#apidoc-content: { float: left; }
+#apidoc-toc { float: right; width: 250px; border-left: 1px solid black; padding-left: 3px;  }
 --></style>
 </head>
-<FRAMESET COLS="*, 250">
-    <FRAME src="Body.html" name="podBody">
-    <FRAME src="TOC.html" name="podTOC">
-    <NOFRAMES>
-        <a style="display: none" href="#toc">Table of Contents</a>
-<& Body.html, Target => '' &>
-        <h1><a id="toc">Table of Contents</a></h1>
-<& TOC.html, Target => '' &>
-    </NOFRAMES>
-</FRAMESET>
+<body>
+<div id="apidoc-container">
+
+<div id="apidoc-toc">
+<h1><a id="toc">Table of Contents</a></h1>
+<h3><a href="<% RT->Config->Get('WebURL') %>">Return to RT</a></h3>
+<& Elements/TOC &>
+</div>
+
+<div id="apidoc-content">
+<& Elements/Body, package => $n &>
+</div>
+
+</div>
+</body>
+</html>
+% # Skip footer
+% $m->abort;
 <%args>
-$n => undef
+$n => ''
 </%args>

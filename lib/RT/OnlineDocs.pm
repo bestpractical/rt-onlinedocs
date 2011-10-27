@@ -6,6 +6,12 @@ use warnings;
 
 package RT::OnlineDocs;
 
+require File::Basename;
+require File::Find;
+require File::Temp;
+require File::Spec;
+require Pod::Simple::HTML;
+
 our $VERSION = "0.10";
 
 1;
