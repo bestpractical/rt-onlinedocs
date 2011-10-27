@@ -1,9 +1,9 @@
 ChangeLog
-html/Callbacks/RT-OnlineDocs/Elements/Tabs/Default
+html/Callbacks/RT-OnlineDocs/Elements/Tabs/Privileged
 html/Developer/Perldoc/autohandler
-html/Developer/Perldoc/Body.html
+html/Developer/Perldoc/Elements/Body
+html/Developer/Perldoc/Elements/TOC
 html/Developer/Perldoc/index.html
-html/Developer/Perldoc/TOC.html
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
