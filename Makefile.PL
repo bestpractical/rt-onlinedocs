@@ -4,6 +4,7 @@ version_from ('lib/RT/OnlineDocs.pm');
 author('Jesse Vincent <jesse@bestpractical.com>');
 abstract('Display RT API documentation online');
 
+requires_rt('4.0.0');
 perl_version('5.8.3');
 
 requires('Pod::Simple::HTML');
