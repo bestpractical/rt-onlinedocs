@@ -14,4 +14,5 @@ requires('File::Spec');
 auto_install();
 
 license('GPLv2');
+sign();
 WriteAll();
