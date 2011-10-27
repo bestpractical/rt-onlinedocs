@@ -1,14 +1,38 @@
-RT::OnlineDocs adds a "Developer Documentation" menu to the RT user interface.
-This tool provides a browsable user interface to the RT API documentation for
-the running RT instance. I'm indebted to Autrijus Tang who contributed the
-first version of this code.
+NAME
+    RT-OnlineDocs - Provides a browseable interface to the developer
+    documentation
 
-In RT 3.8.0 and newer you can enable and disable estension using @Plugins option:
+DESCRIPTION
+    RT::OnlineDocs adds a "Developer Documentation" menu to the RT user
+    interface. This tool provides a browsable user interface to the RT API
+    documentation for the running RT instance. I'm indebted to Audrey Tang
+    who contributed the first version of this code.
 
-    Set( @Plugins, 'RT::OnlineDocs' );
+INSTALLATION
+    perl Makefile.PL
+    make
+    make install
+        May need root permissions
 
-Be sure to stop and start your webserver to fully enable this RT extension
+    Edit your /opt/rt4/etc/RT_SiteConfig.pm
+        Add this line:
 
-    Jesse Vincent
-    <jesse@bestpractical.com>
-    Best Practical Solutions, LLC
+            Set(@Plugins, qw(RT::OnlineDocs));
+
+        or add "RT::OnlineDocs" to your existing @Plugins line.
+
+    Clear your mason cache
+            rm -rf /opt/rt4/var/mason_data/obj
+
+    Restart your webserver
+
+AUTHOR
+    Jesse Vincent - <jesse@bestpractical.com> Audrey Tang -
+    <audreyt@audreyt.org>
+
+LICENCE AND COPYRIGHT
+    This software is copyright (c) 1996-2011 by Best Practical Solutions.
+
+    This module is free software; you can redistribute it and/or modify it
+    under the terms of version 2 of the GNU General Public License.
+
