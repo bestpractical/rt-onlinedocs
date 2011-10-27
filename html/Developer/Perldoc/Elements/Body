@@ -1,27 +1,12 @@
 <%PERL>
-my $dirname   = "$RT::BasePath/lib";
-my $localdir  =  $RT::LocalLibPath;
-my $plugindir =  $RT::LocalPluginPath;
-
-# We intentionally don't use the plugins API, as this also gets us
-# plugins that are not currently enabled
-my @plugins = ();
-if(opendir(PLUGINS, $plugindir)) {
-    while(defined(my $plugin = readdir(PLUGINS))) {
-	next if($plugin =~ /^\./);
-	push(@plugins, "$plugindir/$plugin/lib");
-    }
-    closedir(PLUGINS);
-}
-
 my $path = $package;
 $path =~ s!::!/!g;
 
 my $found;
-for my $ending (qw(pm pod)) {
-    for my $libpath ($dirname, $localdir, @plugins) {
-        next unless -r "$libpath/$path.$ending";
-        $found = "$libpath/$path.$ending";
+for my $ext (qw(pm pod)) {
+    for my $libpath (RT::OnlineDocs->lib_paths) {
+        next unless -r "$libpath/$path.$ext";
+        $found = "$libpath/$path.$ext";
         last;
     }
     last if $found;
@@ -29,7 +14,7 @@ for my $ending (qw(pm pod)) {
 $found ||= $INC{"RT.pm"};
 
 my $fh;
-open $fh, $found or next;
+open $fh, $found or $m->abort(404);
 my $body = do { local $/; <$fh> };
 close $fh;
 

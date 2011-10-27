@@ -1,19 +1,4 @@
 <%PERL>
-my $dirname   = "$RT::BasePath/lib";
-my $localdir  =  $RT::LocalLibPath;
-my $plugindir =  $RT::LocalPluginPath;
-
-# We intentionally don't use the plugins API, as this also gets us
-# plugins that are not currently enabled
-my @plugins = ();
-if(opendir(PLUGINS, $plugindir)) {
-    while(defined(my $plugin = readdir(PLUGINS))) {
-	next if($plugin =~ /^\./);
-	push(@plugins, "$plugindir/$plugin/lib");
-    }
-    closedir(PLUGINS);
-}
-
 my $self = RT->Config->Get('WebURL') . "Developer/Perldoc?n=";
 
 # Find relevant files
@@ -35,7 +20,7 @@ File::Find::find(
             push @found, $name;
         },
     },
-    $dirname, $localdir, @plugins
+    RT::OnlineDocs->lib_paths
 );
 $m->notes(toc => \%toc);
 
