@@ -65,7 +65,7 @@ require File::Temp;
 require File::Spec;
 require Pod::Simple::HTML;
 
-our $VERSION = "0.10";
+our $VERSION = "1.0";
 
 sub lib_paths {
     my $dirname   = "$RT::BasePath/lib";
