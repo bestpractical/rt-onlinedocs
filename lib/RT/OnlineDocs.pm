@@ -1,26 +1,25 @@
 =head1 NAME
 
-RT-OnlineDocs - Provides a browseable interface to the developer documentation
+RT-OnlineDocs - Provides developer documentation in RT itself
 
 =head1 DESCRIPTION
 
-RT::OnlineDocs adds a "Developer Documentation" menu to the RT user interface.
-This tool provides a browsable user interface to the RT API documentation for
-the running RT instance. I'm indebted to Audrey Tang who contributed the
-first version of this code.
+This extension adds a "Developer Documentation" menu to the RT user
+interface.  This tool provides a browsable user interface to the RT API
+documentation for the running RT instance.
 
 =head1 INSTALLATION
 
-This extension is intended for RT4 only. If you wish to run this
-extension on RT 3.8 or earlier, please install version .10.
+This extension is works with RT 4.0.  You can also find the
+documentation for your version at L<https://bestpractical.com/docs/rt/>
 
 =over
 
-=item perl Makefile.PL
+=item C<perl Makefile.PL>
 
-=item make
+=item C<make>
 
-=item make install
+=item C<make install>
 
 May need root permissions
 
@@ -42,15 +41,27 @@ or add C<RT::OnlineDocs> to your existing C<@Plugins> line.
 
 =head1 AUTHOR
 
-Jesse Vincent - <jesse@bestpractical.com>
-Audrey Tang - <audreyt@audreyt.org>
+Best Practical Solutions, LLC E<lt>modules@bestpractical.comE<gt>
 
-=head1 LICENCE AND COPYRIGHT
+Original code by Audrey Tang.
 
-This software is copyright (c) 1996-2011 by Best Practical Solutions.
+=head1 BUGS
 
-This module is free software; you can redistribute it and/or
-modify it under the terms of version 2 of the GNU General Public License.
+All bugs should be reported via email to
+
+    L<bug-RT-OnlineDocs@rt.cpan.org|mailto:bug-RT-OnlineDocs@rt.cpan.org>
+
+or via the web at
+
+    L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RT-OnlineDocs>.
+
+=head1 COPYRIGHT
+
+This software is copyright (c) 1996-2015 by Best Practical Solutions, LLC.
+
+This is free software, licensed under:
+
+  The GNU General Public License, Version 2, June 1991
 
 =cut
 
@@ -65,7 +76,7 @@ require File::Temp;
 require File::Spec;
 require Pod::Simple::HTML;
 
-our $VERSION = "1.0";
+our $VERSION = "1.1";
 
 sub lib_paths {
     my $dirname   = "$RT::BasePath/lib";

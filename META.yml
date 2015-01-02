@@ -1,14 +1,15 @@
 ---
-abstract: 'RT OnlineDocs Extension'
+abstract: 'RT-OnlineDocs Extension'
 author:
-  - 'Jesse Vincent - <jesse@bestpractical.com>'
+  - 'Best Practical Solutions, LLC <modules@bestpractical.com>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.59
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.59
 distribution_type: module
-generated_by: 'Module::Install version 1.01'
-license: gplv2
+dynamic_config: 1
+generated_by: 'Module::Install version 1.14'
+license: gpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
@@ -26,4 +27,8 @@ requires:
   perl: 5.8.3
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 1.0
+  repository: https://github.com/bestpractical/rt-onlinedocs
+version: '1.1'
+x_module_install_rtx_version: '0.36'
+x_requires_rt: 4.0.0
+x_rt_too_new: 4.2.0
